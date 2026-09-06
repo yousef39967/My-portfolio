@@ -111,6 +111,11 @@ h1 em { color: var(--mint); font-family: Georgia, "Times New Roman", serif; font
 .project-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; color: #536176; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 14px 0 0; list-style: none; }
 .tag-list li { padding: 6px 10px; border: 1px solid var(--dark-line); border-radius: 999px; color: #46566d; background: rgba(255,255,255,.45); font-size: .72rem; font-weight: 700; }
+.project-links { margin-top: 24px; }
+.project-link { color: #147969; font-size: .82rem; font-weight: 800; }
+.project-link span { display: inline-block; margin-left: 5px; transition: transform .2s ease; }
+.project-link:hover { color: var(--ink); }
+.project-link:hover span { transform: translate(2px, -2px); }
 .project-aside { align-self: start; padding: 21px; border: 1px solid var(--dark-line); border-radius: 16px; background: rgba(255,255,255,.48); }
 .project-aside span { display: block; margin-bottom: 7px; color: var(--muted); font-size: .67rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .project-aside strong { display: block; color: var(--ink); }
@@ -132,13 +137,22 @@ h1 em { color: var(--mint); font-family: Georgia, "Times New Roman", serif; font
 .clarifier { margin: 6px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: #8696ab; font-size: .76rem; font-style: italic; }
 
 .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--dark-line); border-left: 1px solid var(--dark-line); }
-.skill-card { min-height: 230px; padding: 28px; border-right: 1px solid var(--dark-line); border-bottom: 1px solid var(--dark-line); background: rgba(255,255,255,.28); }
+.skill-card { position: relative; isolation: isolate; min-height: 230px; padding: 28px; overflow: hidden; border-right: 1px solid var(--dark-line); border-bottom: 1px solid var(--dark-line); background: rgba(255,255,255,.28); cursor: default; transition: transform .28s cubic-bezier(.2,.75,.25,1), box-shadow .28s ease, background-color .28s ease, border-color .28s ease; }
+.skill-card::before { content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 4px; background: var(--mint); transform: scaleX(0); transform-origin: left; transition: transform .28s ease; }
 .skill-card-accent { background: var(--ink); color: white; }
-.skill-number { color: #8290a3; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .72rem; }
+.skill-number { display: inline-block; color: #8290a3; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .72rem; transition: color .28s ease, transform .28s ease; }
 .skill-card-accent .skill-number { color: var(--mint); }
-.skill-card h3 { margin: 55px 0 13px; font-size: 1.2rem; letter-spacing: -.025em; }
-.skill-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+.skill-card h3 { margin: 55px 0 13px; font-size: 1.2rem; letter-spacing: -.025em; transition: color .28s ease, transform .28s ease; }
+.skill-card p { margin: 0; color: var(--muted); font-size: .9rem; transition: color .28s ease; }
 .skill-card-accent p { color: var(--mist); }
+.skill-card:hover, .skill-card:focus-visible { z-index: 2; border-color: rgba(20,121,105,.34); background: #fff; box-shadow: 0 22px 55px rgba(7,17,31,.14); outline: none; }
+.skill-card:hover::before, .skill-card:focus-visible::before { transform: scaleX(1); }
+.skill-card:hover .skill-number, .skill-card:focus-visible .skill-number { color: #147969; transform: translateX(5px); }
+.skill-card:hover h3, .skill-card:focus-visible h3 { color: #147969; transform: translateY(-2px); }
+.skill-card-accent:hover, .skill-card-accent:focus-visible { border-color: rgba(78,225,193,.48); background: #102139; }
+.skill-card-accent:hover .skill-number, .skill-card-accent:focus-visible .skill-number,
+.skill-card-accent:hover h3, .skill-card-accent:focus-visible h3 { color: var(--mint); }
+.skill-card-accent:hover p, .skill-card-accent:focus-visible p { color: var(--white); }
 
 .education { padding: 112px 0; }
 .education-grid { display: grid; grid-template-columns: .75fr 1.4fr .65fr; gap: 32px; align-items: start; }
@@ -169,6 +183,8 @@ h1 em { color: var(--mint); font-family: Georgia, "Times New Roman", serif; font
 
 [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.skill-card[data-reveal].is-visible:hover,
+.skill-card[data-reveal].is-visible:focus-visible { transform: translateY(-8px); }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr .72fr; gap: 35px; }

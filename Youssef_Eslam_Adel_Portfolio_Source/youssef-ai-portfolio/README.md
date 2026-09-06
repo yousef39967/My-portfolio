@@ -1,10 +1,10 @@
 # Youssef Eslam Adel — AI Portfolio
 
-A responsive, single-page portfolio for AI internship applications. Built with plain HTML, CSS, and JavaScript, with no framework or build step required.
+A responsive portfolio built with HTML, CSS, and JavaScript. No framework or build step is required.
 
 ## Run locally
 
-Open `index.html` directly in a browser, or serve the folder locally:
+Open `index.html` directly in a browser, or serve this directory locally:
 
 ```bash
 python -m http.server 8000
@@ -12,15 +12,11 @@ python -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
-## Publish with GitHub Pages
+## GitHub Pages setup
 
-1. Create a new GitHub repository.
-2. Upload all files from this folder to the repository root.
-3. Open the repository's **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select the `main` branch and `/ (root)` folder, then save.
+This repository deploys automatically through `.github/workflows/static.yml`. The workflow publishes this directory whenever changes are pushed to `main`.
 
-## Structure
+## Project structure
 
 ```text
 .
@@ -38,4 +34,3 @@ Then visit `http://localhost:8000`.
 - Colors, typography, and responsive layout: `styles.css`
 - Navigation and scroll interactions: `script.js`
 - Portrait and downloadable CV: `assets/`
-
